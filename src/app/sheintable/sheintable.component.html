@@ -1,0 +1,130 @@
+<section class="home" id="home">
+    <form [formGroup]="userdata">
+        <div class="form-group">
+            <label for="client">Client</label>
+            <input type="text" id="client" formControlName="client" class="form-control"
+                placeholder="Enter your client  name">
+        </div>
+
+        <div class="form-group">
+            <label for="items">Items</label>
+            <input type="number" id="items" formControlName="items" class="form-control" placeholder="How Many Items?">
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Cost </label>
+            <input type="number" id="num1" [(ngModel)]="number1" formControlName="num1" placeholder="0.00$"
+                class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="num4">Saved</label>
+            <input type="number" id="num4" [(ngModel)]="number4" formControlName="num4" placeholder="0.00$"
+                class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="delivery">your Delivery </label>
+            <input type="number" id="num2" [(ngModel)]="number2" formControlName="num2" placeholder="0.00$"
+                class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="delivery">Delivery Cost </label>
+            <input type="number" id="num7" [(ngModel)]="number7" formControlName="num7" placeholder="0.00$"
+                class="form-control">
+        </div>
+
+        <label for="choice">Paid </label>
+        <div>
+            <select formControlName="choice">
+                <option value="Pending">Pending</option>
+                <option value="Done">Done</option>
+            </select>
+        </div>
+
+        <br>
+        <div class="btncontrol">
+
+            <button class="btn" (click)="onClick()" (keydown.enter)="onClick()">Add</button>
+
+            <button class="btn" type="button" (click)="onClear()">Clear</button>
+
+        </div>
+    </form>
+
+    <div *ngIf="showClearConfirmationDialog" class="confirmation-dialog">
+        <div class="card">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                style="fill: rgba(0, 0, 0, 1);transform: msFilter">
+                <path d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm10.618-3L15 2H9L7.382 4H3v2h18V4z"></path>
+            </svg>
+            <p class="cookieHeading">Are You Sure!</p>
+
+
+            <div class="buttonContainer">
+                <button class="acceptButton" (click)="confirmClear()">Yes</button>
+                <button class="declineButton" (click)="cancelClear()">No</button>
+            </div>
+
+
+        </div>
+
+    </div>
+</section>
+
+<div class="table-container">
+    <div>
+        <h2>Table of Values</h2>
+        <br>
+        <br>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Items</th>
+                    <th>Cost</th>
+                    <th>Saved</th>
+                    <th>Your Delivery</th>
+                    <th>Delivery Cost</th>
+                    <th>Paid</th>
+                    <th>Total</th>
+                    <th>Profit</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let listo of tableData; let i = index">
+                <tr *ngIf="tableData.length > 0">
+                    <td>{{ listo.client }}</td>
+                    <td>{{ listo.items }}</td>
+                    <td>{{ listo.num1 | currency:'USD':'symbol':'1.2-2' }}</td>
+                    <td>{{ listo.num4 | currency:'USD':'symbol':'1.2-2' }}</td>
+                    <td>{{ listo.num2 | currency:'USD':'symbol':'1.2-2' }}</td>
+                    <td>{{ listo.num7 | currency:'USD':'symbol':'1.2-2' }}</td>
+                    <td>{{ listo.choice }}</td>
+                    <td>{{ (listo.num1 + listo.num4 + listo.num2) | currency:'USD':'symbol':'1.2-2' }}</td>
+                    <td>{{ (listo.num4 + listo.num2 - listo.num7 )| currency:'USD':'symbol':'1.2-2' }}
+                    </td>
+                    <td class="btns"><button class="btn" (click)="editRow(i)">Edit</button>
+                        <button class="btn" (click)="clearTable()">Clear</button>
+
+                    </td>
+                </tr>
+            </tbody>
+
+
+
+
+            <tfoot>
+                <tr>
+                    <td colspan="9" style="text-align: right;">Overall Total:</td>
+                    <td>{{ calculateOverallTotal() | currency:'USD':'symbol':'1.2-2' }}</td>
+
+                <tr>
+                    <td colspan="9" style="text-align: right;">Profit Total:</td>
+                    <td>{{ calculateOverallProfit() | currency:'USD':'symbol':'1.2-2' }}</td>
+                </tr>
+
+            </tfoot>
+        </table>
+    </div>
+    >
