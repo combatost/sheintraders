@@ -1,5 +1,5 @@
 <section class="home" id="home">
-    <form [formGroup]="userdata">
+    <form [formGroup]="userForm">
         <div class="form-group">
             <label for="client">Client</label>
             <input type="text" id="client" formControlName="client" class="form-control"
@@ -12,7 +12,7 @@
         </div>
 
         <div class="form-group">
-            <label for="amount">Cost </label>
+            <label for="cost">Cost </label>
             <input type="number" id="num1" [(ngModel)]="number1" formControlName="num1" placeholder="0.00$"
                 class="form-control">
         </div>
@@ -45,7 +45,8 @@
         <br>
         <div class="btncontrol">
 
-            <button class="btn" (click)="onClick()" (keydown.enter)="onClick()">Add</button>
+            <button class="btn" [hidden]="switch" (click)="onClick()" >Add</button>
+            <button class="btn" [hidden]="!switch" (click)="onupdate()">Update</button>
 
             <button class="btn" type="button" (click)="onClear()">Clear</button>
 
@@ -62,7 +63,7 @@
 
 
             <div class="buttonContainer">
-                <button class="acceptButton" (click)="confirmClear()">Yes</button>
+                <button class="acceptButton" (click)="confirmClear(indexoftable)">Yes</button>
                 <button class="declineButton" (click)="cancelClear()">No</button>
             </div>
 
@@ -80,6 +81,7 @@
         <table border="1">
             <thead>
                 <tr>
+                    <th>Id Number</th>
                     <th>Client</th>
                     <th>Items</th>
                     <th>Cost</th>
@@ -92,8 +94,10 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody *ngFor="let listo of tableData; let i = index">
-                <tr *ngIf="tableData.length > 0">
+            <tbody *ngFor="let listo of onselect; let i = index">
+
+                <tr>
+                    <td>{{i}}</td>
                     <td>{{ listo.client }}</td>
                     <td>{{ listo.items }}</td>
                     <td>{{ listo.num1 | currency:'USD':'symbol':'1.2-2' }}</td>
@@ -101,11 +105,12 @@
                     <td>{{ listo.num2 | currency:'USD':'symbol':'1.2-2' }}</td>
                     <td>{{ listo.num7 | currency:'USD':'symbol':'1.2-2' }}</td>
                     <td>{{ listo.choice }}</td>
-                    <td>{{ (listo.num1 + listo.num4 + listo.num2) | currency:'USD':'symbol':'1.2-2' }}</td>
-                    <td>{{ (listo.num4 + listo.num2 - listo.num7 )| currency:'USD':'symbol':'1.2-2' }}
+                    <td>{{ (listo.num1 + listo.num4 + listo.num2 ) | currency:'USD':'symbol':'1.2-2' }}</td>
+                    <td>{{ (listo.num4 + listo.num2 - (listo.num7)) | currency:'USD':'symbol':'1.2-2' }}
                     </td>
-                    <td class="btns"><button class="btn" (click)="editRow(i)">Edit</button>
-                        <button class="btn" (click)="clearTable()">Clear</button>
+                    <td class="btns">
+                        <button class="btn" (click)="onEdit(i)">Edit</button>
+                        <button class="btn" (click)="onClean()">Clear</button>
 
                     </td>
                 </tr>
@@ -116,11 +121,11 @@
 
             <tfoot>
                 <tr>
-                    <td colspan="9" style="text-align: right;">Overall Total:</td>
+                    <td colspan="10" style="text-align: right;">Overall Total:</td>
                     <td>{{ calculateOverallTotal() | currency:'USD':'symbol':'1.2-2' }}</td>
 
                 <tr>
-                    <td colspan="9" style="text-align: right;">Profit Total:</td>
+                    <td colspan="10" style="text-align: right;">Profit Total:</td>
                     <td>{{ calculateOverallProfit() | currency:'USD':'symbol':'1.2-2' }}</td>
                 </tr>
 
