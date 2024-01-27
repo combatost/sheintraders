@@ -1,60 +1,159 @@
+<app-navigation></app-navigation>
 <section class="home" id="home">
+    <h1>Best Results</h1>
     <form [formGroup]="userForm">
-        <div class="form-group">
-            <label for="client">Client</label>
-            <input type="text" id="client" formControlName="client" class="form-control"
-                placeholder="Enter your client  name">
-        </div>
+        <div class="card">
 
-        <div class="form-group">
-            <label for="items">Items</label>
-            <input type="number" id="items" formControlName="items" class="form-control" placeholder="How Many Items?">
-        </div>
 
-        <div class="form-group">
-            <label for="cost">Cost </label>
-            <input type="number" id="num1" [(ngModel)]="number1" formControlName="num1" placeholder="0.00$"
-                class="form-control">
-        </div>
+            <div class="results">
 
-        <div class="form-group">
-            <label for="num4">Saved</label>
-            <input type="number" id="num4" [(ngModel)]="number4" formControlName="num4" placeholder="0.00$"
-                class="form-control">
-        </div>
 
-        <div class="form-group">
-            <label for="delivery">your Delivery </label>
-            <input type="number" id="num2" [(ngModel)]="number2" formControlName="num2" placeholder="0.00$"
-                class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="delivery">Delivery Cost </label>
-            <input type="number" id="num7" [(ngModel)]="number7" formControlName="num7" placeholder="0.00$"
-                class="form-control">
-        </div>
+                <div class="results-list">
+                    <div class="entry">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                style="fill: rgba(0, 0, 0, 1);transform: msFilter">
+                                <path
+                                    d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="desc">
+                            <label for="client">Client</label>
+                            <input type="text" id="client" formControlName="client" class="form-control"
+                                placeholder="Enter your client  name">
+                        </div>
+                    </div>
+                    <div class="entry">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                style="fill: rgba(0, 0, 0, 1);transform: msFilter">
+                                <path
+                                    d="M4 20h2V10a1 1 0 0 1 1-1h12V7a1 1 0 0 0-1-1h-3.051c-.252-2.244-2.139-4-4.449-4S6.303 3.756 6.051 6H3a1 1 0 0 0-1 1v11a2 2 0 0 0 2 2zm6.5-16c1.207 0 2.218.86 2.45 2h-4.9c.232-1.14 1.243-2 2.45-2z">
+                                </path>
+                                <path
+                                    d="M21 11H9a1 1 0 0 0-1 1v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8a1 1 0 0 0-1-1zm-6 7c-2.757 0-5-2.243-5-5h2c0 1.654 1.346 3 3 3s3-1.346 3-3h2c0 2.757-2.243 5-5 5z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="desc">
+                            <label for="items">Items</label>
+                            <input type="number" id="items" formControlName="items" class="form-control"
+                                placeholder="How Many Items?">
+                        </div>
+                    </div>
+                </div>
 
-        <label for="choice">Paid </label>
-        <div>
-            <select formControlName="choice">
-                <option value="Pending">Pending</option>
-                <option value="Done">Done</option>
-            </select>
-        </div>
 
-        <br>
-        <div class="btncontrol">
+                <div class="results-list">
+                    <div class="entry">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                style="fill: rgba(0, 0, 0, 1);transform: msFilter">
+                                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z">
+                                </path>
+                                <path
+                                    d="M12 11c-2 0-2-.63-2-1s.7-1 2-1 1.39.64 1.4 1h2A3 3 0 0 0 13 7.12V6h-2v1.09C9 7.42 8 8.71 8 10c0 1.12.52 3 4 3 2 0 2 .68 2 1s-.62 1-2 1c-1.84 0-2-.86-2-1H8c0 .92.66 2.55 3 2.92V18h2v-1.08c2-.34 3-1.63 3-2.92 0-1.12-.52-3-4-3z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="desc">
+                            <label for="cost">Cost </label>
+                            <input type="number" id="num1" [(ngModel)]="number1" formControlName="num1"
+                                placeholder="0.00$" class="form-control">
+                        </div>
+                        <!-- <p class="badge">New
+                        </p> -->
+                    </div>
+                    <div class="entry">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                style="fill: rgba(0, 0, 0, 1);transform: msFilter">
+                                <path
+                                    d="M21 5H3a1 1 0 0 0-1 1v4h.893c.996 0 1.92.681 2.08 1.664A2.001 2.001 0 0 1 3 14H2v4a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-4h-1a2.001 2.001 0 0 1-1.973-2.336c.16-.983 1.084-1.664 2.08-1.664H22V6a1 1 0 0 0-1-1zM11 17H9v-2h2v2zm0-4H9v-2h2v2zm0-4H9V7h2v2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="desc">
+                            <label for="num4">Saved</label>
+                            <input type="number" id="num4" [(ngModel)]="number4" formControlName="num4"
+                                placeholder="0.00$" class="form-control">
+                        </div>
+                    </div>
+                    <div class="entry">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                style="fill: rgba(0, 0, 0, 1);transform: msFilter">
+                                <path
+                                    d="M19.15 8a2 2 0 0 0-1.72-1H15V5a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 1 1.73 3.49 3.49 0 0 0 7 .27h3.1a3.48 3.48 0 0 0 6.9 0 2 2 0 0 0 2-2v-3a1.07 1.07 0 0 0-.14-.52zM15 9h2.43l1.8 3H15zM6.5 19A1.5 1.5 0 1 1 8 17.5 1.5 1.5 0 0 1 6.5 19zm10 0a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="desc">
+                            <label for="delivery">your Delivery </label>
+                            <input type="number" id="num2" [(ngModel)]="number2" formControlName="num2"
+                                placeholder="0.00$" class="form-control">
+                        </div>
+                    </div>
+                    <div class="entry">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                style="fill: rgba(0, 0, 0, 1);transform: msFilter">
+                                <path
+                                    d="M3.414 13.778 2 15.192l4.949 2.121 2.122 4.95 1.414-1.414-.707-3.536L13.091 14l3.61 7.704 1.339-1.339-1.19-10.123 2.828-2.829a2 2 0 1 0-2.828-2.828l-2.903 2.903L3.824 6.297 2.559 7.563l7.644 3.67-3.253 3.253-3.536-.708z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="desc">
+                            <label for="delivery">Delivery Cost </label>
+                            <input type="number" id="num7" [(ngModel)]="number7" formControlName="num7"
+                                placeholder="0.00$" class="form-control">
+                        </div>
+                    </div>
+                    <div class="entry">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                style="fill: rgba(0, 0, 0, 1);transform: msFilter">
+                                <path
+                                    d="m21.706 5.292-2.999-2.999A.996.996 0 0 0 18 2H6a.997.997 0 0 0-.707.293L2.294 5.292A.996.996 0 0 0 2 6v13c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6a.994.994 0 0 0-.294-.708zM6.414 4h11.172l1 1H5.414l1-1zM12 18l-5-5h3v-3h4v3h3l-5 5z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="desc">
+                            <label for="choice">Paid</label>
+                            <select formControlName="choice">
+                                <option value="Pending">Pending</option>
+                                <option value="Done">Done</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <button class="btn" [hidden]="switch" (click)="onClick()" >Add</button>
-            <button class="btn" [hidden]="!switch" (click)="onupdate()">Update</button>
+            <div class="card-footer">
 
-            <button class="btn" type="button" (click)="onClear()">Clear</button>
+                <div class="btncontrol">
 
+                    <button class="btn" [hidden]="switch" (click)="onClick()">Add</button>
+                    <button class="btn" [hidden]="!switch" (click)="onupdate()">Update</button>
+
+                    <button class="btn" type="button" (click)="onClear()">Clear</button>
+
+
+
+
+                </div>
+
+                <p class="label edit-actions">Edit Actions
+                </p>
+            </div>
         </div>
     </form>
 
+
     <div *ngIf="showClearConfirmationDialog" class="confirmation-dialog">
-        <div class="card">
+        <div class="card2">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                 style="fill: rgba(0, 0, 0, 1);transform: msFilter">
                 <path d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm10.618-3L15 2H9L7.382 4H3v2h18V4z"></path>
@@ -132,4 +231,4 @@
             </tfoot>
         </table>
     </div>
-    >
+    

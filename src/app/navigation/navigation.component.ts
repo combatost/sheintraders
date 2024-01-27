@@ -1,4 +1,7 @@
-import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Output, Renderer2 } from '@angular/core';
+
+import { FirebaseService } from '../services/firebase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -6,17 +9,22 @@ import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
   styleUrl: './navigation.component.css'
 })
 export class NavigationComponent {
+  @Output() isLogout = new EventEmitter<void>();
 
   currentSection: string = '';
   isNavbarOpen = false;
 
+  constructor(private renderer: Renderer2, private el: ElementRef, public firebaseServices: FirebaseService,private router: Router) {}
 
-
-
-  constructor(private renderer: Renderer2, private el: ElementRef,) {
-
-
-
+  logout(): void {
+    this.firebaseServices.logout();
+    this.isLogout.emit(); // Emit the event when logged out
+  }
+  navigateToAbout() {
+    this.router.navigate(['aboutme']);
+  }
+  navigateToHome() {
+    this.router.navigate(['sheintable']);
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -56,10 +64,10 @@ export class NavigationComponent {
 
   toggleMenuIcon(menuIcon: HTMLElement, isOpen: boolean, navbar: HTMLElement): void {
     // Define your SVG close icon markup
-    const closeIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>`;
+    const closeIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: white ; transform: ;msFilter:;"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>`;
 
     // Define your menu icon SVG markup
-    const menuIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: msFilter"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg>`;
+    const menuIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:  white ;transform: msFilter"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg>`;
 
     // Replace the innerHTML of menuIcon with closeIconSVG if isOpen is true, else replace it with your menu icon SVG
     menuIcon.innerHTML = isOpen ? closeIconSVG : menuIconSVG; // Use the menu icon SVG markup when closing the navbar

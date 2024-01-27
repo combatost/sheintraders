@@ -28,8 +28,8 @@
 }
 
 .about-img img {
-    width: 20vw;
-    height: 20vw;
+   max-width: 250px;
+   height: 250px;
     border-radius: 50%;
     border-bottom: 1rem solid var(--main-color);
     box-shadow: 0 1px 21px var(--shadow-color);
@@ -53,13 +53,14 @@
 .about-content p {
     font-size: 1.6rem;
     margin: 2rem 0 3rem;
+    text-align: justify;
 }
 
 
 .btn {
     display: inline-block;
     padding: 1.2rem 2.8rem;
-    background: var(--main-color);
+    background: var(--bg-color);
     color: var(--white-color);
     border-radius: .6rem;
     box-shadow: 0 .2rem .5rem var(--shadow-color);
@@ -72,8 +73,8 @@
 
 .btn:hover {
     background: transparent;
-    color: var(--main-color);
-    border-color: var(--main-color);
+    color: var(--bg-color);
+    border-color: var(--bg-color);
 }
 
 
@@ -139,14 +140,6 @@
 
 
 
-@media (max-width: 365px) {
-
-    .about-img img {
-        width: 90vw;
-    }
-
-
-}
 
 
 .card {
@@ -201,7 +194,7 @@
 }
 
 .return-btn .btn:hover {
-    color: var(--main-color);
+    color: var(--bg-color);
 }
 section {
     min-height: 100vh;

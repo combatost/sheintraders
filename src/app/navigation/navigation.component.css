@@ -4,13 +4,15 @@
     left: 0;
     width: 100%;
     padding: 2rem 7%;
-    background: transparent;
+    background: black;
     display: flex;
     align-items: center;
     z-index: 100;
     transition: .5s ease;
 }
-
+.bx-moon {
+    fill: aliceblue;
+}
 .header.sticky {
     background: var(--bg-color);
     box-shadow: 0 .1rem 1rem var(--shadow-color);
@@ -190,3 +192,4 @@
 
 
 }
+

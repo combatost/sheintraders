@@ -3,10 +3,10 @@ html {
     overflow-x: hidden;
 }
 :root {
-    --bg-color: green;
-    --text-color: #333;
-    --main-color: black;
-    --white-color: white;
+    --bg-color: rgb(0, 3, 0);
+    --text-color: #ffffff;
+    --main-color: rgb(255, 255, 255);
+    --white-color: rgb(255, 255, 255);
     --shadow-color: rgba(0, 0, 0, .2);
 
 }
@@ -25,9 +25,10 @@ html {
 
 
 body {
-    background-color:#e8e8e8;
+    background-color:#d7e5e7;
     min-height: 100vh;
     padding-top: 9rem;
+    
 }
 
 
@@ -40,5 +41,5 @@ h2 {
 
 section {
     min-height: 100vh;
-    padding: 10rem 7% 2rem;
+    padding: 25px
 }

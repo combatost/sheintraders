@@ -17,6 +17,7 @@ export class SheintableComponent {
   number4: number = null!;
   number7: number = null!;
   result: number = 0;
+  
 
 
   constructor(private dataform: FormBuilder) {

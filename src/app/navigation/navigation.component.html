@@ -2,9 +2,12 @@
   <a class="logo">SHEIN TRADERS</a>
 
   <nav class="navbar">
-    <a routerLink="/Shein" [class.active]="currentSection === 'home'">Home</a>
-    <a routerLink="/About" [class.active]="currentSection === 'about'">About</a>
-    <a href="#contact" [class.active]="currentSection === 'contact'">Contact</a>
+
+    <a (click)="navigateToHome()" [class.active]="currentSection === 'home'">Home</a>
+    <a (click)="navigateToAbout()" [class.active]="currentSection === 'about'">About</a>
+
+    <a href="#" (click)="logout()">logout</a>
+
   </nav>
   <div class="bx-moon" id="darkMode-icon">
     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 50 50">
@@ -15,12 +18,13 @@
   </div>
   <div class=" " id="menu-icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-      style="fill: rgba(0, 0, 0, 1);transform: msFilter">
+      style="fill: rgb(252, 252, 252);transform: msFilter">
       <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
     </svg>
   </div>
 
 
-
 </header>
 
+
+<router-outlet></router-outlet>

@@ -1,26 +1,3 @@
-/* Styles for the form */
-form {
-    max-width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background: #FFFFFF;
-    box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
-    border-radius: 26px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 15px;
-    color: #4d4e52;
-    font-weight: 600;
-}
 
 input,
 select {
@@ -33,6 +10,13 @@ select {
     transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
 }
 
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    padding: 5px;
+}
+
 input:focus {
     border: 1px solid transparent;
     box-shadow: 0px 0px 0px 2px #242424;
@@ -41,7 +25,7 @@ input:focus {
 
 .btn {
     padding: 1.2rem 2.8rem;
-    background: var(--main-color);
+    background: var(--bg-color);
     color: var(--white-color);
     border-radius: .6rem;
     box-shadow: 0 .2rem .5rem var(--shadow-color);
@@ -55,8 +39,8 @@ input:focus {
 
 .btn:hover {
     background: transparent;
-    color: var(--main-color);
-    border-color: var(--main-color);
+    color: var(--bg-color);
+    border-color: var(--bg-color);
 }
 
 .clear-btn {
@@ -67,7 +51,7 @@ input:focus {
 
 
 
-.card {
+.card2 {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -105,11 +89,7 @@ input:focus {
 
 
 
-.buttonContainer {
-    display: flex;
-    gap: 20px;
-    flex-direction: row;
-}
+
 
 .acceptButton {
     width: 80px;
@@ -154,7 +134,6 @@ input:focus {
 .btns {
     display: flex;
     justify-content: space-around;
-
     max-width: 100%;
 }
 
@@ -310,7 +289,7 @@ tfoot tr:last-child {
 
 @media (max-width: 450px) {
     html {
-        font-size: 50%;
+        font-size: 60%;
     }
 
     #darkMode-icon {
@@ -332,3 +311,166 @@ tfoot tr:last-child {
 
 
 }
+
+.card {
+    margin: auto;
+    max-width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 11px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0 20px;
+}
+
+.search-container input {
+    width: 100%;
+    height: 50px;
+    border: 0;
+    outline: none;
+    font-size: 13px;
+}
+
+.categories {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    padding: 0px 20px 20px 20px;
+}
+
+
+
+.results {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.results hr {
+    width: 100%;
+    height: 1px;
+    border: 0;
+    background-color: #ECECEC;
+}
+
+.results p {
+    padding: 0 20px;
+}
+
+p.label {
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 13px;
+    color: #5F6368;
+}
+
+.results .entry {
+    display: grid;
+    grid-template-columns: 40px 1fr 3px;
+    gap: 12px;
+    padding: 5px 20px;
+    transition: all 0.2s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.results .entry:hover {
+    background-color: #F5F8FE;
+}
+
+.results .results-list .entry:hover .icon {
+    background-color: #1763fa;
+}
+
+.results .results-list .entry:hover .icon svg path,
+.results .results-list .entry:hover .icon svg circle {
+    fill: #ffffff;
+}
+
+.results .results-list .entry:hover label {
+    color: #1763fa;
+}
+
+.results .results-list .entry:hover span {
+    color: #7ba0eb;
+}
+
+.results .results-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.results .entry .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ECECEC;
+    border-radius: 7px;
+    transition: all 0.2s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.results .entry .desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+.results .entry .desc label {
+    display: block;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: #171718;
+}
+
+.results .entry .desc span {
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12px;
+    color: #72767c;
+}
+
+.results .entry .badge {
+    width: 40px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background: #DDFFDE;
+    border: 1px solid #08581d0e;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+    color: #08581D;
+}
+
+
+
+.card .action {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.card .action p {
+    padding-left: 5px;
+}
+
+
+
+.edit-actions {
+    width: 100%;
+    text-align: right;
+    padding-right: 10px;
+    opacity: 0.6;
+}
+
+
