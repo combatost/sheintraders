@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,6 +19,7 @@ export class LoginComponent {
   message: string = ''; // Add a message variable
   // In your component class
   passwordVisible: boolean = false;
+  
 
 
   constructor(public firebaseServices: FirebaseService, private auth: AngularFireAuth) { }
@@ -52,10 +54,16 @@ export class LoginComponent {
   }
 
 
-
   async onSignin(email: string, password: string) {
     try {
       this.isLoading = true; // Show loader while signing in
+  
+      // Check if the email is valid before proceeding
+      if (!this.isValidEmail(email)) {
+        this.isLoading = false; // Hide loader if email is not valid
+        this.signupMessage = 'Please enter a valid email address.';
+        return;
+      }
   
       await this.firebaseServices.signin(email, password);
   
@@ -78,16 +86,22 @@ export class LoginComponent {
       }, 3000); // Show loader for 3000 milliseconds (3 seconds)
     } catch (error: any) {
       this.isLoading = false; // Hide loader if there's an error
-    
+  
       setTimeout(() => {
-        this.message = 'Error during login. Please try again.';
-    
+        this.signupMessage = 'Error during login. Please try again.';
+  
         setTimeout(() => {
-          this.message = ''; // Clear the message after 3000 milliseconds (3 seconds)
+          this.signupMessage = ''; // Clear the message after 3000 milliseconds (3 seconds)
         }, 3000); // 3000 milliseconds (3 seconds)
-    
+  
       }, 1); // 3000 milliseconds (3 seconds)
     }
+  }
+  
+  // Function to validate email using a regular expression
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
   
 

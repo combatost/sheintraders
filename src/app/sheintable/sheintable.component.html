@@ -1,6 +1,5 @@
-<app-navigation></app-navigation>
 <section class="home" id="home">
-    <h1>Best Results</h1>
+    <h1>جدول المبيعات</h1>
     <form [formGroup]="userForm">
         <div class="card">
 
@@ -19,7 +18,7 @@
                             </svg>
                         </div>
                         <div class="desc">
-                            <label for="client">Client</label>
+                            <label for="client">اسم الزبون</label>
                             <input type="text" id="client" formControlName="client" class="form-control"
                                 placeholder="Enter your client  name">
                         </div>
@@ -37,7 +36,7 @@
                             </svg>
                         </div>
                         <div class="desc">
-                            <label for="items">Items</label>
+                            <label for="items">عدد البضاعه</label>
                             <input type="number" id="items" formControlName="items" class="form-control"
                                 placeholder="How Many Items?">
                         </div>
@@ -58,12 +57,10 @@
                             </svg>
                         </div>
                         <div class="desc">
-                            <label for="cost">Cost </label>
+                            <label for="cost">التكلفه </label>
                             <input type="number" id="num1" [(ngModel)]="number1" formControlName="num1"
                                 placeholder="0.00$" class="form-control">
                         </div>
-                        <!-- <p class="badge">New
-                        </p> -->
                     </div>
                     <div class="entry">
                         <div class="icon">
@@ -75,7 +72,7 @@
                             </svg>
                         </div>
                         <div class="desc">
-                            <label for="num4">Saved</label>
+                            <label for="num4">الخصومات</label>
                             <input type="number" id="num4" [(ngModel)]="number4" formControlName="num4"
                                 placeholder="0.00$" class="form-control">
                         </div>
@@ -90,7 +87,7 @@
                             </svg>
                         </div>
                         <div class="desc">
-                            <label for="delivery">your Delivery </label>
+                            <label for="delivery">دليفري خاص بك</label>
                             <input type="number" id="num2" [(ngModel)]="number2" formControlName="num2"
                                 placeholder="0.00$" class="form-control">
                         </div>
@@ -105,7 +102,7 @@
                             </svg>
                         </div>
                         <div class="desc">
-                            <label for="delivery">Delivery Cost </label>
+                            <label for="delivery">تكلفه الشحن</label>
                             <input type="number" id="num7" [(ngModel)]="number7" formControlName="num7"
                                 placeholder="0.00$" class="form-control">
                         </div>
@@ -120,12 +117,12 @@
                             </svg>
                         </div>
                         <div class="desc">
-                            <label for="choice">Paid</label>
+                            <label for="choice">تم الدفع؟</label>
                             <select formControlName="choice">
-                                <option value="Pending">Pending</option>
-                                <option value="Done">Done</option>
+                                <option value="Pending">لم يدفع</option>
+                                <option value="Done">دفع</option>
                             </select>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -144,9 +141,6 @@
 
 
                 </div>
-
-                <p class="label edit-actions">Edit Actions
-                </p>
             </div>
         </div>
     </form>
@@ -174,22 +168,20 @@
 
 <div class="table-container">
     <div>
-        <h2>Table of Values</h2>
-        <br>
-        <br>
+
         <table border="1">
             <thead>
                 <tr>
                     <th>Id Number</th>
-                    <th>Client</th>
-                    <th>Items</th>
-                    <th>Cost</th>
-                    <th>Saved</th>
-                    <th>Your Delivery</th>
-                    <th>Delivery Cost</th>
-                    <th>Paid</th>
-                    <th>Total</th>
-                    <th>Profit</th>
+                    <th>اسم الزبون</th>
+                    <th>عدد البضاعة</th>
+                    <th>التكلفة</th>
+                    <th>الخصومات</th>
+                    <th>دليفري خاص بك</th>
+                    <th>تكلفة الشحن</th>
+                    <th>تم الدفع؟</th>
+                    <th>المجموع</th>
+                    <th>الارباح</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -211,6 +203,8 @@
                         <button class="btn" (click)="onEdit(i)">Edit</button>
                         <button class="btn" (click)="onClean()">Clear</button>
 
+
+
                     </td>
                 </tr>
             </tbody>
@@ -220,15 +214,14 @@
 
             <tfoot>
                 <tr>
-                    <td colspan="10" style="text-align: right;">Overall Total:</td>
+                    <td colspan="10" style="text-align: right;">المجموع الكلي:</td>
                     <td>{{ calculateOverallTotal() | currency:'USD':'symbol':'1.2-2' }}</td>
 
                 <tr>
-                    <td colspan="10" style="text-align: right;">Profit Total:</td>
+                    <td colspan="10" style="text-align: right;">إجمالي الربح:</td>
                     <td>{{ calculateOverallProfit() | currency:'USD':'symbol':'1.2-2' }}</td>
                 </tr>
 
             </tfoot>
         </table>
     </div>
-    

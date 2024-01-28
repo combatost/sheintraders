@@ -5,10 +5,12 @@ import { AboutmeComponent } from './aboutme/aboutme.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
+
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to LoginComponent
-  { path: 'login', component: LoginComponent },
-  { path: 'sheintable', component: SheintableComponent },
-  { path: 'aboutme', component: AboutmeComponent },
+  { path: '**', component: LoginComponent },
+  { path: 'sheintable' ,component: SheintableComponent},
+  { path: 'aboutme' , component: AboutmeComponent}
+
 ];
 
 @NgModule({

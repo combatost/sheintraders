@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Docxtemplater from 'docxtemplater';
+import saveAs from 'file-saver';
+import PizZip from 'pizzip';
+import JSZip from 'jszip';
+
 
 @Component({
   selector: 'app-sheintable',
@@ -17,12 +22,12 @@ export class SheintableComponent {
   number4: number = null!;
   number7: number = null!;
   result: number = 0;
-  
+
 
 
   constructor(private dataform: FormBuilder) {
 
-    this.onselect= [{
+    this.onselect = [{
       client: 'Marvel', items: 3, num1: 3, num2: 5, num4: 2, num7: 6, choice: 'pending'
     }]
 
@@ -39,7 +44,7 @@ export class SheintableComponent {
       choice: ['', Validators.required],
     })
 
-  
+
   }
 
 
@@ -97,4 +102,8 @@ export class SheintableComponent {
     // Hide the confirmation dialog
     this.showClearConfirmationDialog = false;
   }
+
+
+ 
+
 }

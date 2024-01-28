@@ -20,14 +20,20 @@ html {
     outline: none;
     scroll-behavior: smooth;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    
 
 }
 
 
+
+
 body {
-    background-color:#d7e5e7;
+    background-image: url('./assets/image/1341524.png');
+    background-size: cover; /* Optional: Adjust as needed */
     min-height: 100vh;
-    padding-top: 9rem;
+    padding-top: 9rem;   
+ 
     
 }
 

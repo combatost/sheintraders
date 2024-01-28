@@ -4,7 +4,7 @@
   <nav class="navbar">
 
     <a (click)="navigateToHome()" [class.active]="currentSection === 'home'">Home</a>
-    <a (click)="navigateToAbout()" [class.active]="currentSection === 'about'">About</a>
+    <!-- <a (click)="navigateToAbout()" [class.active]="currentSection === 'about'">About</a> -->
 
     <a href="#" (click)="logout()">logout</a>
 
@@ -27,4 +27,6 @@
 </header>
 
 
-<router-outlet></router-outlet>
+
+<app-sheintable></app-sheintable>
+

@@ -128,7 +128,8 @@ input:focus {
 .btncontrol {
     display: flex;
     justify-content: space-around;
-    padding-top: 10px;
+    padding-top: 13px;
+    padding-bottom: 10px;
 }
 
 .btns {
@@ -159,14 +160,15 @@ table {
 /* ... (other existing styles) ... */
 tbody td {
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 1.9rem;
+    background-color: #f9f9f9;
 }
 
 th,
 td {
     padding: 12px;
     text-align: left;
-    font-size: 1.2rem;
+    font-size: 1.9rem;
 }
 
 thead {
@@ -317,7 +319,9 @@ tfoot tr:last-child {
     max-width: 100%;
     background: #FFFFFF;
     box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
-    border-radius: 11px;
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 11px;
+    padding-top: 10px;
 }
 
 .search-container {
@@ -423,7 +427,7 @@ p.label {
 .results .entry .desc label {
     display: block;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 1.9rem;
     line-height: 15px;
     color: #171718;
 }
@@ -471,6 +475,22 @@ p.label {
     text-align: right;
     padding-right: 10px;
     opacity: 0.6;
+}
+
+
+h1{
+    padding: 1.2rem 2.8rem;
+    background: var(--bg-color);
+    color: var(--white-color);
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+    box-shadow: 0 0.2rem 0.5rem var(--shadow-color);
+    font-size: 1.6rem;
+    letter-spacing: .1rem;
+    font-weight: 700;
+    border: 0.2rem solid transparent;
+   
+ 
 }
 
 

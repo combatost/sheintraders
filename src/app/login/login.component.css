@@ -11,6 +11,8 @@
 
     /* Center the form */
     margin: 0 auto;
+    
+    
 }
 
 a {
@@ -570,6 +572,8 @@ h5 {
     width: 30%;
     right: 0;
 }
+
+
 
 .fireplace {
     display: block;
