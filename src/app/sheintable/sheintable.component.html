@@ -37,7 +37,7 @@
                         </div>
                         <div class="desc">
                             <label for="items">عدد البضاعه</label>
-                            <input type="number" id="items" formControlName="items" class="form-control"
+                            <input type="number" id="num8"  [(ngModel)]="number8"  formControlName="num8" class="form-control"
                                 placeholder="How Many Items?">
                         </div>
                     </div>
@@ -190,14 +190,14 @@
                 <tr>
                     <td>{{i}}</td>
                     <td>{{ listo.client }}</td>
-                    <td>{{ listo.items }}</td>
+                    <td>{{ listo.num8 }}</td>
                     <td>{{ listo.num1 | currency:'USD':'symbol':'1.2-2' }}</td>
                     <td>{{ listo.num4 | currency:'USD':'symbol':'1.2-2' }}</td>
                     <td>{{ listo.num2 | currency:'USD':'symbol':'1.2-2' }}</td>
                     <td>{{ listo.num7 | currency:'USD':'symbol':'1.2-2' }}</td>
                     <td>{{ listo.choice }}</td>
-                    <td>{{ (listo.num1 + listo.num4 + listo.num2 ) | currency:'USD':'symbol':'1.2-2' }}</td>
-                    <td>{{ (listo.num4 + listo.num2 - (listo.num7)) | currency:'USD':'symbol':'1.2-2' }}
+                    <td>{{ (listo.num1 + listo.num4 + listo.num2 + listo.num8) | currency:'USD':'symbol':'1.2-2' }}</td>
+                    <td>{{ (listo.num4 + listo.num2 + listo.num8 - (listo.num7)) | currency:'USD':'symbol':'1.2-2' }}
                     </td>
                     <td class="btns">
                         <button class="btn" (click)="onEdit(i)">Edit</button>

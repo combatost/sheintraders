@@ -21,6 +21,8 @@ a {
 
 .signuptext {
     color: red;
+    padding: 5px;
+    text-align: center;
 }
 
 ::placeholder {
@@ -62,27 +64,8 @@ a {
     border: 1.5px solid #2d79f3;
 }
 
-.flex-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    justify-content: space-between;
-}
-
-.flex-row>div>label {
-    font-size: 14px;
-    color: black;
-    font-weight: 400;
-}
 
 
-
-h5 {
-    text-align: justify;
-    justify-content: center;
-    color: red;
-}
 
 .button-submit {
     margin: 20px 0 10px 0;
@@ -472,8 +455,6 @@ h5 {
     height: 100%;
     margin-right: 10%;
     position: relative;
-    /*bottom: 0;
-    right: 9%;*/
     z-index: 1;
     border-top: 4px solid #4D4454;
     border-right: 4px solid #4D4454;
@@ -481,15 +462,6 @@ h5 {
     border-top-right-radius: 6px;
     transform: skew(30deg);
     box-shadow: inset -3px 3px 0px 0px #F7B563;
-    /*background: linear-gradient(
-      to bottom, 
-      rgba(246,212,132,1) 0%,
-      rgba(246,212,132,1) 24%,
-      rgba(#F0B656,1) 25%,
-      rgba(#F0B656,1) 74%,
-      rgba(235,151,53,1) 75%,
-      rgba(235,151,53,1) 100%
-    );*/
     background: #f6d484;
 }
 

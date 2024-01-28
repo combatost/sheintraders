@@ -17,9 +17,10 @@ export class LoginComponent {
   isLoading = false; // Add this property
   signupMessage = ''; // Add this property
   message: string = ''; // Add a message variable
-  // In your component class
   passwordVisible: boolean = false;
-  
+  showForgotPasswordLink: boolean = true;
+
+
 
 
   constructor(public firebaseServices: FirebaseService, private auth: AngularFireAuth) { }
@@ -27,6 +28,14 @@ export class LoginComponent {
   async onSignup(email: string, password: string) {
     try {
       this.isLoading = true; // Show loader while signing up
+
+      // Check if the email is valid before proceeding
+      if (!this.isValidEmail(email)) {
+        this.isLoading = false; // Hide loader if email is not valid
+        this.signupMessage = 'Please enter a valid email address.';
+        return;
+      }
+
       await this.firebaseServices.signup(email, password);
 
       this.isLoading = false; // Hide loader after the operation completes
@@ -48,7 +57,7 @@ export class LoginComponent {
       if (error.code && error.code === 'auth/email-already-in-use') {
         this.signupMessage = 'Email address is already in use. Please use a different email.';
       } else {
-        this.signupMessage = 'Error during signup. Please try again.';
+        this.signupMessage = 'Error during signup';
       }
     }
   }
@@ -57,53 +66,50 @@ export class LoginComponent {
   async onSignin(email: string, password: string) {
     try {
       this.isLoading = true; // Show loader while signing in
-  
+
       // Check if the email is valid before proceeding
       if (!this.isValidEmail(email)) {
         this.isLoading = false; // Hide loader if email is not valid
         this.signupMessage = 'Please enter a valid email address.';
         return;
       }
-  
+
       await this.firebaseServices.signin(email, password);
-  
+
       setTimeout(() => {
         this.isLoading = false; // Hide loader after the operation completes
-  
+
         if (this.firebaseServices.isLoggedIn) {
           // Reset error message on successful login
           this.signupMessage = '';
           this.isSignedIn = true;
-  
+
           // Wait for 3.5 seconds before showing the "Login completed" message
-          setTimeout(() => {
-            this.signupMessage = 'Login completed!';
-          }, 2000);
         } else {
           this.signupMessage = 'Login failed. Please try again.';
         }
-  
+
       }, 3000); // Show loader for 3000 milliseconds (3 seconds)
     } catch (error: any) {
       this.isLoading = false; // Hide loader if there's an error
-  
+
       setTimeout(() => {
-        this.signupMessage = 'Error during login. Please try again.';
-  
+        this.signupMessage = 'Please check your email or password';
+
         setTimeout(() => {
           this.signupMessage = ''; // Clear the message after 3000 milliseconds (3 seconds)
-        }, 3000); // 3000 milliseconds (3 seconds)
-  
+        }, 2000); // 3000 milliseconds (3 seconds)
+
       }, 1); // 3000 milliseconds (3 seconds)
     }
   }
-  
+
   // Function to validate email using a regular expression
   isValidEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
-  
+
 
 
 
@@ -143,7 +149,7 @@ export class LoginComponent {
           // Display success message after a delay
           setTimeout(() => {
             this.message = 'Password reset email sent successfully';
-          }, 2000); // 2000 milliseconds (2 seconds)
+          }, 1000); // 2000 milliseconds (2 seconds)
         })
         .catch((error) => {
           // Display error message immediately
@@ -171,6 +177,10 @@ export class LoginComponent {
   // In your component class
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
+  }
+
+  hideForgotPasswordLink() {
+    this.showForgotPasswordLink = false
   }
 
 }
