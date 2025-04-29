@@ -1,0 +1,49 @@
+<app-navigation></app-navigation>
+
+<section class="analytics-page">
+  <h2 class="page-title">📊 Sales Analytics</h2>
+
+  <div *ngIf="salesData.length > 0; else noData">
+    <div class="analytics-cards">
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <strong>Total Sales:</strong>
+        <div class="card-value">{{ totalSales | currency }}</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <strong>Total Profit:</strong>
+        <div class="card-value">{{ totalProfit | currency }}</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📦</div>
+        <strong>Items Sold:</strong>
+        <div class="card-value">{{ totalItems }}</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💵</div>
+        <strong>Avg. Cost per Item:</strong>
+        <div class="card-value">{{ averageCost | currency }}</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">⏳</div>
+        <strong>Pending Orders:</strong>
+        <div class="card-value">{{ pendingCount }}</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <strong>Completed Orders:</strong>
+        <div class="card-value">{{ doneCount }}</div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <p class="no-data-msg">🚫 No sales data available.</p>
+  </ng-template>
+</section>

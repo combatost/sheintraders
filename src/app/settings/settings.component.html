@@ -1,0 +1,42 @@
+<app-navigation></app-navigation>
+
+<section>
+  <div class="settings-container">
+    <h2 class="settings-title">Account Settings</h2>
+    
+    <div class="settings-info">
+      <div class="info-field">
+        <label for="email">Email:</label>
+        <p>{{ user?.email }}</p>
+      </div>
+      
+      <div class="info-field">
+        <label for="uid">UID:</label>
+        <p>{{ user?.uid }}</p>
+      </div>
+    </div>
+  
+    <div class="settings-actions">
+      <button class="btn primary" (click)="openPasswordChangeForm()">Change Password</button>
+      <button class="btn danger" (click)="logout()">Logout</button>
+    </div>
+  
+    <div *ngIf="showPasswordForm" class="password-change-form">
+      <label for="newPassword">New Password</label>
+      <input type="password" id="newPassword" [(ngModel)]="newPassword" placeholder="Enter new password" required />
+      <label for="confirmPassword">Confirm New Password</label>
+      <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Confirm new password" required />
+      
+      <button class="btn" (click)="changePassword()">Change Password</button>
+      <button class="btn secondary" (click)="cancelPasswordChange()">Cancel</button>
+    </div>
+
+    <div class="delete-account">
+      <button class="btn danger" (click)="deleteAccount()">Delete Account</button>
+    </div>
+
+    <div *ngIf="passwordChangeMessage" class="password-change-message">
+      <p>{{ passwordChangeMessage }}</p>
+    </div>
+  </div>
+</section>

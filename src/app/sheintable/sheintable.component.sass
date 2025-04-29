@@ -1,0 +1,256 @@
+// Variables
+$primary-color: #4caf50 // Fresh Green
+$accent-color: #00bcd4 // Bright Blue
+$warn-color: #f44336 // Red
+$background-color: #f5f5f5 // Light Gray Background
+$text-color: #333333 // Dark text color
+$input-bg-color: #ffffff // White input background
+$hover-color: #e0e0e0 // Light hover color
+$button-border-radius: 25px // Rounded button edges
+$card-radius: 15px // Rounded card edges
+$box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) // Box shadow variable
+$gradient-bg: linear-gradient(135deg, #4caf50, #00bcd4) // Gradient for the background
+$hover-scale: 1.1 // Scale effect on hover
+
+// Global Styles
+* 
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+body
+  font-family: 'Roboto', sans-serif
+  background-color: $background-color
+  color: $text-color
+  padding: 20px
+
+// Home Section
+.home
+  max-width: 1200px
+  margin: 0 auto
+  padding: 20px
+  background: $gradient-bg
+  border-radius: $card-radius
+  box-shadow: $box-shadow
+  padding-bottom: 40px
+
+  h1
+    text-align: center
+    font-size: 3rem
+    margin-bottom: 40px
+    color: #fff
+    font-weight: bold
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2)
+
+  .card
+    background-color: $input-bg-color
+    border-radius: $card-radius
+    box-shadow: $box-shadow
+    padding: 20px
+    display: flex
+    flex-direction: column
+    transition: transform 0.3s ease, box-shadow 0.3s ease
+
+    &:hover
+      transform: scale($hover-scale)
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2)
+
+  .results
+    margin-bottom: 20px
+
+    .results-list
+      display: grid
+      grid-template-columns: 1fr 1fr
+      gap: 20px
+
+      .entry
+        display: flex
+        align-items: center
+
+        i
+          font-size: 1.8rem
+          color: $primary-color
+          margin-right: 15px
+
+        .desc
+          flex-grow: 1
+
+          label
+            font-size: 1.2rem
+            font-weight: 500
+            margin-bottom: 8px
+
+          input,
+          select
+            width: 100%
+            padding: 12px
+            font-size: 1rem
+            border: 1px solid #ccc
+            border-radius: $card-radius
+            background-color: $input-bg-color
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+            transition: background-color 0.3s ease
+
+            &:focus
+              outline: none
+              background-color: #e3f2fd
+
+  .card-footer
+    .btncontrol
+      display: flex
+      justify-content: space-between
+      gap: 15px
+
+      .btn
+        padding: 12px 24px
+        font-size: 1.1rem
+        font-weight: bold
+        border-radius: $button-border-radius
+        cursor: pointer
+        transition: transform 0.3s ease, box-shadow 0.3s ease
+
+        &.primary
+          background-color: $primary-color
+          color: #fff
+          border: none
+
+          &:hover
+            transform: scale($hover-scale)
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3)
+
+        &.accent
+          background-color: $accent-color
+          color: #fff
+          border: none
+
+          &:hover
+            transform: scale($hover-scale)
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3)
+
+        &.warn
+          background-color: $warn-color
+          color: #fff
+          border: none
+
+          &:hover
+            transform: scale($hover-scale)
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3)
+
+  .confirmation-dialog
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    background: rgba(0, 0, 0, 0.5)
+    z-index: 9999
+
+    .card2
+      background-color: #fff
+      border-radius: $card-radius
+      padding: 30px
+      display: flex
+      flex-direction: column
+      align-items: center
+      text-align: center
+      box-shadow: $box-shadow
+
+      i
+        font-size: 2rem
+        color: $warn-color
+        margin-bottom: 20px
+
+      .cookieHeading
+        font-size: 1.6rem
+        margin-bottom: 20px
+        color: $text-color
+
+      .buttonContainer
+        display: flex
+        justify-content: space-around
+        gap: 15px
+
+        .btn
+          padding: 10px 20px
+          font-size: 1.1rem
+          border-radius: $button-border-radius
+          cursor: pointer
+          transition: background-color 0.3s ease
+
+          &.primary
+            background-color: $primary-color
+            color: white
+
+          &.accent
+            background-color: $accent-color
+            color: white
+
+          &:hover
+            background-color: darken($primary-color, 10%)
+ 
+// Table Styling
+.table-container
+  margin-top: 50px
+  overflow-x: auto
+  background-color: #fff
+  border-radius: $card-radius
+  box-shadow: $box-shadow
+  padding: 20px
+
+  .sales-table
+    width: 100%
+    border-collapse: collapse
+
+    th,
+    td
+      padding: 12px
+      text-align: center
+      font-size: 1rem
+      color: $text-color
+      border-bottom: 1px solid #e0e0e0
+      transition: background-color 0.3s ease
+
+    th
+      background-color: #f0f0f0
+      font-weight: bold
+
+    tbody tr:nth-child(odd)
+      background-color: #fafafa
+
+    tbody tr:hover
+      background-color: $hover-color
+
+    .action-cell
+      display: flex
+      justify-content: space-around
+
+      .btn
+        padding: 6px 12px
+        font-size: 0.9rem
+        cursor: pointer
+        border-radius: $button-border-radius
+
+        &.edit-btn
+          background-color: #4caf50
+          color: white
+
+          &:hover
+            background-color: darken(#4caf50, 10%)
+
+        &.delete-btn
+          background-color: #f44336
+          color: white
+
+          &:hover
+            background-color: darken(#f44336, 10%)
+.btn.success 
+  background-color: $primary-color
+  color: $input-bg-color
+  border: none
+  padding: 12px 20px
+  border-radius: 8px
+  cursor: pointer
+  transition: background-color 0.3s ease

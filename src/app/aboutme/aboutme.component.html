@@ -1,0 +1,51 @@
+<app-navigation></app-navigation>
+<section class="about" id="about">
+    <div class="about-img" [ngClass]="{ 'hidden': hideContent }">
+        <img src="./assets/image/shein.jpeg" alt="">
+    </div>
+    <div class="about-content" [ngClass]="{ 'hidden': hideContent }">
+        <h2 class="heading">About <span>Me</span></h2>
+        <h3>Hi I am Here To Help You Calculate Your Profits</h3>
+        <p>
+            I am a versatile professional skilled in both web development and video editing. Proficient in languages
+            like HTML, CSS, and JavaScript, I craft immersive digital experiences. With expertise in Blender, I merge
+            creativity with technical prowess, ensuring captivating visual narratives and seamless, user-centric web
+            solutions in my portfolio
+        </p>
+        <a class="btn" (click)="toggleVisibility()">Read More</a>
+    </div>
+
+
+    <div class="return-btn" *ngIf="hideContent" [@fadeInOut]>
+        <div class="card">
+            <div class="header">
+
+                <div>
+
+                    <p class="name">Ali Amhaz</p>
+                </div>
+            </div>
+
+            <p class="message">
+                I am a multifaceted professional with a comprehensive skill set encompassing web development, video
+                editing, and animation, each facet contributing to a holistic approach in crafting immersive digital
+                experiences. As a web developer, I specialize in the art of coding, using languages such as HTML, CSS,
+                and JavaScript to build dynamic and visually captivating websites. My projects seamlessly merge
+                functionality with aesthetic appeal, providing users with an engaging online experience.
+
+                In the realm of video editing, I wield the tools of storytelling, manipulating visuals and sound to
+                create compelling narratives. My expertise lies in the ability to not only edit footage but also to
+                craft a seamless and emotionally resonant story. Whether it's a promotional video, educational content,
+                or a cinematic masterpiece, I bring a meticulous eye for detail and a passion for storytelling to every
+                project.
+
+
+            </p>
+
+        </div>
+        <a class="btn" (click)="toggleVisibility()" [@fadeInOut]>Return</a>
+
+    </div>
+
+</section>
+

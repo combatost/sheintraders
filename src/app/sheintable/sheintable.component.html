@@ -1,0 +1,190 @@
+<app-navigation></app-navigation>
+<br>
+<section class="home" id="home">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+  <h1>Sales Table</h1>
+  <form [formGroup]="userForm" (ngSubmit)="switch ? onupdate() : onClick()">
+    <div class="card">
+      <div class="results">
+        <div class="results-list">
+          <!-- Client Name -->
+          <div class="entry">
+            <i class="material-icons">account_circle</i>
+            <div class="desc">
+              <label for="client">Client Name</label>
+              <input
+                id="client"
+                type="text"
+                formControlName="client"
+                placeholder="Enter client name"
+              />
+            </div>
+          </div>
+
+          <!-- Quantity -->
+          <div class="entry">
+            <i class="material-icons">inventory_2</i>
+            <div class="desc">
+              <label for="num8">Quantity</label>
+              <input
+                id="num8"
+                type="number"
+                formControlName="num8"
+                placeholder="How many items?"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="results-list">
+          <!-- Cost -->
+          <div class="entry">
+            <i class="material-icons">attach_money</i>
+            <div class="desc">
+              <label for="num1">Cost</label>
+              <input
+                id="num1"
+                type="number"
+                formControlName="num1"
+                placeholder="0.00"
+              />
+            </div>
+          </div>
+
+          <!-- Discount -->
+          <div class="entry">
+            <i class="material-icons">discount</i>
+            <div class="desc">
+              <label for="num4">Discount</label>
+              <input
+                id="num4"
+                type="number"
+                formControlName="num4"
+                placeholder="0.00"
+              />
+            </div>
+          </div>
+
+          <!-- Your Delivery -->
+          <div class="entry">
+            <i class="material-icons">local_shipping</i>
+            <div class="desc">
+              <label for="num2">Your Delivery</label>
+              <input
+                id="num2"
+                type="number"
+                formControlName="num2"
+                placeholder="0.00"
+              />
+            </div>
+          </div>
+
+          <!-- Shipping Cost -->
+          <div class="entry">
+            <i class="material-icons">flight_takeoff</i>
+            <div class="desc">
+              <label for="num7">Shipping Cost</label>
+              <input
+                id="num7"
+                type="number"
+                formControlName="num7"
+                placeholder="0.00"
+              />
+            </div>
+          </div>
+
+          <!-- Paid? -->
+          <div class="entry">
+            <i class="material-icons">check_circle</i>
+            <div class="desc">
+              <label for="choice">Paid?</label>
+              <select id="choice" formControlName="choice">
+                <option value="">-- Select --</option>
+                <option value="Pending">Pending</option>
+                <option value="Done">Done</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="btncontrol">
+          <button type="submit" class="btn primary" [hidden]="switch">Add</button>
+          <button type="submit" class="btn accent" [hidden]="!switch">Update</button>
+          <button type="button" class="btn warn" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Clear Confirmation Dialog -->
+  <div *ngIf="showClearConfirmationDialog" class="confirmation-dialog">
+    <div class="card2">
+      <i class="material-icons">delete_forever</i>
+      <p class="cookieHeading">Are You Sure?</p>
+      <div class="buttonContainer">
+        <button class="btn primary" (click)="confirmClear(indexoftable)">Yes</button>
+        <button class="btn accent" (click)="cancelClear()">No</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Plain-HTML Table Section -->
+<div class="table-container">
+  <table class="sales-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Client Name</th>
+        <th>Quantity</th>
+        <th>Cost</th>
+        <th>Discount</th>
+        <th>Your Delivery</th>
+        <th>Shipping Cost</th>
+        <th>Paid?</th>
+        <th>Total</th>
+        <th>Profit</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of onselect; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ row.client }}</td>
+        <td>{{ row.num8 }}</td>
+        <td>{{ row.num1 | currency:'USD':'symbol':'1.2-2' }}</td>
+        <td>{{ row.num4 | currency:'USD':'symbol':'1.2-2' }}</td>
+        <td>{{ row.num2 | currency:'USD':'symbol':'1.2-2' }}</td>
+        <td>{{ row.num7 | currency:'USD':'symbol':'1.2-2' }}</td>
+        <td>{{ row.choice }}</td>
+        <td>{{ (row.num1 + row.num4 + row.num2 + row.num8) | currency:'USD':'symbol':'1.2-2' }}</td>
+        <td>{{ (row.num4 + row.num2 + row.num8 - row.num7) | currency:'USD':'symbol':'1.2-2' }}</td>
+        <td class="action-cell">
+          <button class="btn edit-btn" (click)="onEdit(i)">Edit</button>
+          <button class="btn delete-btn" (click)="confirmClear(i)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="1" class="right-align">Overall Total:</td>
+        <td colspan="11">{{ calculateOverallTotal() | currency:'USD':'symbol':'1.2-2' }}</td>
+      </tr>
+      <tr>
+        <td colspan="1" class="right-align">Overall Profit:</td>
+        <td colspan="11">{{ calculateOverallProfit() | currency:'USD':'symbol':'1.2-2' }}</td>
+      
+      </tr>
+      <tr>
+        <td>
+          <button class="btn success" (click)="onSave()">💾 Save All</button>
+        </td>
+      </tr>
+    </tfoot>
+   
+
+  </table>
+</div>

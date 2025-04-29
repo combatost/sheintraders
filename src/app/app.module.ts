@@ -1,0 +1,71 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavigationComponent } from './navigation/navigation.component';
+import { SheintableComponent } from './sheintable/sheintable.component';
+import { AboutmeComponent } from './aboutme/aboutme.component';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MaterialModule } from './material/material.module';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { provideFirestore } from '@angular/fire/firestore';
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { SettingsComponent } from './settings/settings.component';
+import { AnalysicComponent } from './analysic/analysic.component';
+
+
+
+
+
+
+
+const firebaseConfig = { apiKey: "AIzaSyBordW3FDRtiqFD4VlJXqdl2XrUZzV-j2o",
+authDomain: "loginshein-e7033.firebaseapp.com",
+projectId: "loginshein-e7033",
+storageBucket: "loginshein-e7033.appspot.com",
+messagingSenderId: "435758152351",
+appId: "1:435758152351:web:c13ece8239dc1bf62fc0aa",
+measurementId: "G-20LVKBMFHK"}
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    NavigationComponent,
+    SheintableComponent,
+    AboutmeComponent,
+    LoginComponent,
+    SettingsComponent,
+    AnalysicComponent,
+
+
+
+
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    HttpClientModule,
+    MaterialModule,
+
+  ],
+  
+  providers: [
+    provideClientHydration(),
+    provideAnimationsAsync(),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideFirestore(() => getFirestore()),
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
