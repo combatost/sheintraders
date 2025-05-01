@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseService } from '../services/firebase.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-sheintable',
@@ -11,21 +13,23 @@ export class SheintableComponent implements OnInit {
   userForm!: FormGroup;
   onselect: any = [];
   switch = false;
-  showClearConfirmationDialog = false;
   indexoftable!: number;
+  showCancelButton: boolean = false;
 
   constructor(
     private dataform: FormBuilder,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private dialog: MatDialog
   ) {
     this.userForm = this.dataform.group({
       client: ['', Validators.required],
-      num1: [0, Validators.required],
-      num2: [0, Validators.required],
-      num4: [0, Validators.required],
-      num7: [0, Validators.required],
-      num8: [0, Validators.required],
+      cost: [0, Validators.required],
+      delivery: [0, Validators.required],
+      discount: [0, Validators.required],
+      shippingCost: [0, Validators.required],
+      quantity: [0, Validators.required],
       choice: ['', Validators.required],
+      includeQuantityInProfit: [false],
     });
   }
 
@@ -39,9 +43,29 @@ export class SheintableComponent implements OnInit {
 
   async onClick() {
     if (this.userForm.valid) {
-      this.onselect.push(this.userForm.value);
+      const formValue = this.userForm.value;
+
+      if (this.switch) {
+        this.onselect[this.indexoftable] = formValue;
+        this.switch = false;
+      } else {
+        this.onselect.push(formValue);
+      }
+
       this.userForm.reset();
       await this.firebaseService.saveUserData(this.onselect);
+    }
+  }
+
+  onQuantityProfitChange() {
+    const quantityProfitChecked = this.userForm.get('includeQuantityInProfit')?.value;
+
+    if (quantityProfitChecked) {
+      const quantity = this.userForm.get('quantity')?.value || 0;
+      const profit = quantity;
+      this.userForm.patchValue({ quantity: profit });
+    } else {
+      this.userForm.patchValue({ quantity: 0 });
     }
   }
 
@@ -53,6 +77,7 @@ export class SheintableComponent implements OnInit {
     this.userForm.patchValue(this.onselect[index]);
     this.switch = true;
     this.indexoftable = index;
+    this.showCancelButton = true;
   }
 
   async onupdate() {
@@ -62,28 +87,52 @@ export class SheintableComponent implements OnInit {
     await this.firebaseService.saveUserData(this.onselect);
   }
 
+  calculateProfit(item: any): number {
+    const discountAmount = (item.cost * item.discount) / 100;
+    let profit = discountAmount + item.delivery - item.shippingCost;
+
+    if (item.includeQuantityInProfit) {
+      profit += item.quantity;
+    }
+
+    return profit;
+  }
+
   calculateOverallTotal(): number {
     return this.onselect.reduce((total: number, item: any) =>
-      total + item.num1 + item.num2 + item.num4 + item.num8, 0);
+      total + item.cost + item.discount + item.delivery + item.quantity, 0);
   }
 
   calculateOverallProfit(): number {
     return this.onselect.reduce((totalProfit: number, item: any) =>
-      totalProfit + item.num2 + item.num4 + item.num8 - item.num7, 0);
-  }
-
-  onClean(): void {
-    this.showClearConfirmationDialog = true;
+      totalProfit + this.calculateProfit(item), 0);
   }
 
   async confirmClear(index: number) {
     this.onselect.splice(index, 1);
-    this.showClearConfirmationDialog = false;
     await this.firebaseService.saveUserData(this.onselect);
   }
 
-  cancelClear(): void {
-    this.showClearConfirmationDialog = false;
+  onClean(index: number): void {
+    this.indexoftable = index;
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: 'Delete Confirmation',
+        message: 'Are you sure you want to delete this entry?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.confirmClear(index);
+      }
+    });
+  }
+
+  onCancel() {
+    this.userForm.reset();
+    this.switch = false;
+    this.showCancelButton = false;
   }
 
   async onSave() {
@@ -95,5 +144,4 @@ export class SheintableComponent implements OnInit {
       alert('Error saving data.');
     }
   }
-  
 }

@@ -18,21 +18,17 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { SettingsComponent } from './settings/settings.component';
 import { AnalysicComponent } from './analysic/analysic.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
-
-
-
-
-
-
-const firebaseConfig = { apiKey: "AIzaSyBordW3FDRtiqFD4VlJXqdl2XrUZzV-j2o",
-authDomain: "loginshein-e7033.firebaseapp.com",
-projectId: "loginshein-e7033",
-storageBucket: "loginshein-e7033.appspot.com",
-messagingSenderId: "435758152351",
-appId: "1:435758152351:web:c13ece8239dc1bf62fc0aa",
-measurementId: "G-20LVKBMFHK"}
-
+const firebaseConfig = {
+  apiKey: "AIzaSyBordW3FDRtiqFD4VlJXqdl2XrUZzV-j2o",
+  authDomain: "loginshein-e7033.firebaseapp.com",
+  projectId: "loginshein-e7033",
+  storageBucket: "loginshein-e7033.appspot.com",
+  messagingSenderId: "435758152351",
+  appId: "1:435758152351:web:c13ece8239dc1bf62fc0aa",
+  measurementId: "G-20LVKBMFHK"
+};
 
 @NgModule({
   declarations: [
@@ -43,10 +39,7 @@ measurementId: "G-20LVKBMFHK"}
     LoginComponent,
     SettingsComponent,
     AnalysicComponent,
-
-
-
-
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -56,16 +49,14 @@ measurementId: "G-20LVKBMFHK"}
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     HttpClientModule,
-    MaterialModule,
-
+    MaterialModule
   ],
-  
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    provideFirestore(() => getFirestore()),
-  ],
+    provideFirestore(() => getFirestore())
+  ],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

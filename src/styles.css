@@ -2,13 +2,18 @@ html {
     font-size: 62.5%;
     overflow-x: hidden;
 }
+
 :root {
     --bg-color: rgb(0, 3, 0);
     --text-color: #ffffff;
     --main-color: rgb(255, 255, 255);
     --white-color: rgb(255, 255, 255);
-    --shadow-color: rgba(0, 0, 0, .2);
-
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --primary-color: #1a73e8;
+    --secondary-color: #ea4335;
+    --background-color-light: #f4f7fc;
+    --background-color-dark: #121212;
+    --text-dark: #202124;
 }
 
 * {
@@ -19,27 +24,203 @@ html {
     border: none;
     outline: none;
     scroll-behavior: smooth;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: medium;
-    
-
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
 }
 
-
 body {
-    background-color: #f4f7fc; /* Soft light blue-gray color */
-  }
-  
+    background-color: var(--background-color-light);
+    color: var(--text-dark);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-theme {
+    background-color: var(--background-color-dark);
+    color: var(--white-color);
+}
+
+body.dark-theme .header {
+    background-color: #333333;
+}
+
+body.dark-theme .navbar a {
+    color: var(--white-color);
+}
+
+body.dark-theme .navbar a:hover {
+    background-color: var(--primary-color);
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
 h2 {
     padding-top: 5rem;
-    font-weight: 600;
-    font-size: 40px;
+    font-size: 3rem;
     text-align: center;
+    color: var(--text-dark);
 }
 
 section {
     min-height: 100vh;
-    padding: 25px
+    padding: 3rem 2rem;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--white-color);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+header .logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+header .navbar {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+header .navbar a {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+header .navbar a:hover, header .navbar a.active {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+header .icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+header .icons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+}
+
+header .icons button:hover {
+    color: var(--primary-color);
+}
+
+/* Responsive Nav for small and medium devices (Mobile & Tablet) */
+@media (max-width: 1024px) {
+    header {
+        padding: 1rem;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        background-color: var(--background-color-light);
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navbar a {
+        font-size: 1.1rem;
+        padding: 10px 15px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar.open {
+        display: flex;
+    }
+
+    .icons button {
+        font-size: 2rem;
+    }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+    header {
+        padding: 0.8rem 1rem;
+    }
+
+    .logo {
+        font-size: 1.6rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        display: none;
+        padding: 2rem;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background-color: var(--background-color-light);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        z-index: 100;
+    }
+
+    .navbar.open {
+        display: flex;
+    }
+
+    .navbar a {
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .icons {
+        gap: 0.5rem;
+    }
+
+    .icons button {
+        font-size: 2rem;
+    }
+}
+
+/* For very small mobile devices */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .navbar a {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .icons button {
+        font-size: 2rem;
+    }
+}

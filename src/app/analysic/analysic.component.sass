@@ -1,11 +1,19 @@
+// Color Variables
 $primary-color: #1f1f1f
-$secondary-color: #ff6f61
+$secondary-color: #1a73e8
 $bg-color: #f5f5f5
 $card-bg-color: #fff
 $card-border-radius: 10px
 $card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1)
 $transition-speed: 0.3s
+$table-header-bg: #f4f4f4
+$table-row-hover-bg: #f9f9f9
+$table-border-color: #ddd
+$button-hover-bg: #174ea6
+$button-hover-color: #fff
+$button-text-color: #333
 
+// Global Styles
 .analytics-page
   font-family: 'Roboto', sans-serif
   background-color: $bg-color
@@ -61,3 +69,86 @@ $transition-speed: 0.3s
     font-size: 1.2rem
     color: #999
     margin-top: 30px
+
+// Table Styling
+mat-card
+  &.mat-elevation-z4
+    margin-top: 30px
+
+.full-width-table
+  width: 100%
+  border-spacing: 0
+  border-collapse: collapse
+  background-color: $card-bg-color
+  border-radius: 8px
+  overflow: hidden
+  box-shadow: $card-shadow
+  margin-top: 2rem
+
+  th, td
+    padding: 1rem
+    text-align: left
+    border-bottom: 1px solid $table-border-color
+
+  th
+    background-color: $table-header-bg
+    color: $primary-color
+    font-weight: bold
+    font-size: 1.1rem
+    text-transform: uppercase
+
+  td
+    font-size: 1rem
+    color: #444
+    transition: background-color 0.3s ease
+
+  tr:hover
+    background-color: $table-row-hover-bg
+
+  .actions
+    display: flex
+    gap: 0.5rem
+
+// Table Icon Buttons (Edit and Delete)
+mat-icon-button
+  color: $primary-color
+  &:hover
+    color: $secondary-color
+
+// Filter Section
+.filter-options
+  display: flex
+  justify-content: center
+  margin-top: 20px
+  gap: 10px
+
+mat-button-toggle-group
+  .mat-button-toggle
+    font-size: 1rem
+    font-weight: 500
+    padding: 0.8rem
+    border-radius: 8px
+    background-color: #f4f4f4
+    color: $primary-color
+    transition: all $transition-speed ease-in-out
+
+    &:hover
+      background-color: $secondary-color
+      color: $button-hover-color
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+
+  .mat-button-toggle-checked
+    background-color: $secondary-color
+    color: $button-hover-color
+
+// Button Styles (Save Button)
+mat-raised-button
+  background-color: $secondary-color
+  color: $button-text-color
+  padding: 0.6rem 1.5rem
+  border-radius: 8px
+  transition: all $transition-speed ease-in-out
+
+  &:hover
+    background-color: $button-hover-bg
+    color: $button-hover-color

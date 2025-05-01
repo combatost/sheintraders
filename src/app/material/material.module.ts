@@ -1,4 +1,3 @@
-// src/app/material.module.ts
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,6 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle'; // Add MatButtonToggleModule
 
 @NgModule({
   exports: [
@@ -16,7 +18,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatSelectModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule // Add MatButtonToggleModule to the exports array
   ]
 })
 export class MaterialModule {}

@@ -1,190 +1,158 @@
 <app-navigation></app-navigation>
-<br>
-<section class="home" id="home">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+<section>
+<div class="card-container">
 
-  <h1>Sales Table</h1>
-  <form [formGroup]="userForm" (ngSubmit)="switch ? onupdate() : onClick()">
-    <div class="card">
-      <div class="results">
-        <div class="results-list">
-          <!-- Client Name -->
-          <div class="entry">
-            <i class="material-icons">account_circle</i>
-            <div class="desc">
-              <label for="client">Client Name</label>
-              <input
-                id="client"
-                type="text"
-                formControlName="client"
-                placeholder="Enter client name"
-              />
-            </div>
-          </div>
+  <!-- FORM CARD -->
+  <mat-card class="form-card mat-elevation-z4">
+    <mat-card-title>Client Order Form</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="userForm" (ngSubmit)="onClick()">
 
-          <!-- Quantity -->
-          <div class="entry">
-            <i class="material-icons">inventory_2</i>
-            <div class="desc">
-              <label for="num8">Quantity</label>
-              <input
-                id="num8"
-                type="number"
-                formControlName="num8"
-                placeholder="How many items?"
-              />
-            </div>
-          </div>
-        </div>
+        <div class="form-grid">
+          <mat-form-field appearance="fill">
+            <mat-icon matPrefix>person</mat-icon>
+            <mat-label>Client</mat-label>
+            <input matInput formControlName="client" required />
+          </mat-form-field>
 
-        <div class="results-list">
-          <!-- Cost -->
-          <div class="entry">
-            <i class="material-icons">attach_money</i>
-            <div class="desc">
-              <label for="num1">Cost</label>
-              <input
-                id="num1"
-                type="number"
-                formControlName="num1"
-                placeholder="0.00"
-              />
-            </div>
-          </div>
+          <mat-form-field appearance="fill">
+            <mat-icon matPrefix>attach_money</mat-icon>
+            <mat-label>Cost</mat-label>
+            <input matInput type="number" formControlName="cost" required />
+          </mat-form-field>
 
-          <!-- Discount -->
-          <div class="entry">
-            <i class="material-icons">discount</i>
-            <div class="desc">
-              <label for="num4">Discount</label>
-              <input
-                id="num4"
-                type="number"
-                formControlName="num4"
-                placeholder="0.00"
-              />
-            </div>
-          </div>
+          <mat-form-field appearance="fill">
+            <mat-icon matPrefix>local_shipping</mat-icon>
+            <mat-label>Delivery</mat-label>
+            <input matInput type="number" formControlName="delivery" required />
+          </mat-form-field>
 
-          <!-- Your Delivery -->
-          <div class="entry">
-            <i class="material-icons">local_shipping</i>
-            <div class="desc">
-              <label for="num2">Your Delivery</label>
-              <input
-                id="num2"
-                type="number"
-                formControlName="num2"
-                placeholder="0.00"
-              />
-            </div>
-          </div>
+          <mat-form-field appearance="fill">
+            <mat-icon matPrefix>percent</mat-icon>
+            <mat-label>Discount (%)</mat-label>
+            <input matInput type="number" formControlName="discount" required />
+          </mat-form-field>
 
-          <!-- Shipping Cost -->
-          <div class="entry">
-            <i class="material-icons">flight_takeoff</i>
-            <div class="desc">
-              <label for="num7">Shipping Cost</label>
-              <input
-                id="num7"
-                type="number"
-                formControlName="num7"
-                placeholder="0.00"
-              />
-            </div>
-          </div>
+          <mat-form-field appearance="fill">
+            <mat-icon matPrefix>local_shipping</mat-icon>
+            <mat-label>Shipping Cost</mat-label>
+            <input matInput type="number" formControlName="shippingCost" required />
+          </mat-form-field>
 
-          <!-- Paid? -->
-          <div class="entry">
-            <i class="material-icons">check_circle</i>
-            <div class="desc">
-              <label for="choice">Paid?</label>
-              <select id="choice" formControlName="choice">
-                <option value="">-- Select --</option>
-                <option value="Pending">Pending</option>
-                <option value="Done">Done</option>
-              </select>
-            </div>
+          <mat-form-field appearance="fill">
+            <mat-icon matPrefix>grid_on</mat-icon>
+            <mat-label>Quantity</mat-label>
+            <input matInput type="number" formControlName="quantity" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-icon matPrefix>check_circle</mat-icon>
+            <mat-label>Choice</mat-label>
+            <mat-select formControlName="choice" required>
+              <mat-option value="Pending">Pending</mat-option>
+              <mat-option value="Done">Done</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="slide-toggle-wrapper">
+            <mat-slide-toggle formControlName="includeQuantityInProfit" (change)="onQuantityProfitChange()">
+              Include Quantity in Profit
+            </mat-slide-toggle>
           </div>
         </div>
-      </div>
 
-      <div class="card-footer">
-        <div class="btncontrol">
-          <button type="submit" class="btn primary" [hidden]="switch">Add</button>
-          <button type="submit" class="btn accent" [hidden]="!switch">Update</button>
-          <button type="button" class="btn warn" (click)="onClear()">Clear</button>
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit">
+            {{ switch ? 'Update' : 'Add' }}
+          </button>
+
+          <button *ngIf="showCancelButton" mat-stroked-button type="button" (click)="onCancel()">Cancel</button>
+          <button mat-stroked-button type="button" (click)="onClear()">Clear</button>
         </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- TABLE CARD -->
+  <mat-card class="table-card mat-elevation-z4">
+    <mat-card-title>Order Summary</mat-card-title>
+    <mat-card-content>
+
+      <table mat-table [dataSource]="onselect" class="mat-elevation-z2 full-width-table">
+
+        <!-- Client -->
+        <ng-container matColumnDef="client">
+          <th mat-header-cell *matHeaderCellDef> <mat-icon>person</mat-icon> Client </th>
+          <td mat-cell *matCellDef="let element"> {{ element.client }} </td>
+        </ng-container>
+
+        <!-- Quantity -->
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> <mat-icon>grid_on</mat-icon> Quantity </th>
+          <td mat-cell *matCellDef="let element"> {{ element.quantity }} </td>
+        </ng-container>
+
+        <!-- Cost -->
+        <ng-container matColumnDef="cost">
+          <th mat-header-cell *matHeaderCellDef> <mat-icon>attach_money</mat-icon> Cost </th>
+          <td mat-cell *matCellDef="let element"> {{ element.cost }} </td>
+        </ng-container>
+
+        <!-- Discount -->
+        <ng-container matColumnDef="discount">
+          <th mat-header-cell *matHeaderCellDef> <mat-icon>percent</mat-icon> Discount (%) </th>
+          <td mat-cell *matCellDef="let element"> {{ element.discount }} </td>
+        </ng-container>
+
+        <!-- Delivery -->
+        <ng-container matColumnDef="delivery">
+          <th mat-header-cell *matHeaderCellDef> <mat-icon>local_shipping</mat-icon> Delivery </th>
+          <td mat-cell *matCellDef="let element"> {{ element.delivery }} </td>
+        </ng-container>
+
+        <!-- Shipping Cost -->
+        <ng-container matColumnDef="shippingCost">
+          <th mat-header-cell *matHeaderCellDef> <mat-icon>local_shipping</mat-icon> Shipping </th>
+          <td mat-cell *matCellDef="let element"> {{ element.shippingCost }} </td>
+        </ng-container>
+
+        <!-- Choice -->
+        <ng-container matColumnDef="choice">
+          <th mat-header-cell *matHeaderCellDef> <mat-icon>check_circle</mat-icon> Choice </th>
+          <td mat-cell *matCellDef="let element"> {{ element.choice }} </td>
+        </ng-container>
+
+        <!-- Profit -->
+        <ng-container matColumnDef="profit">
+          <th mat-header-cell *matHeaderCellDef> Profit </th>
+          <td mat-cell *matCellDef="let element"> {{ calculateProfit(element) }} </td>
+        </ng-container>
+
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <button mat-icon-button color="accent" (click)="onEdit(i)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="onClean(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['client', 'quantity', 'cost', 'discount', 'delivery', 'shippingCost', 'choice', 'profit', 'actions']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['client', 'quantity', 'cost', 'discount', 'delivery', 'shippingCost', 'choice', 'profit', 'actions'];"></tr>
+      </table>
+
+      <div class="summary-footer">
+        <p><strong>Total Cost:</strong> {{ calculateOverallTotal() }}</p>
+        <p><strong>Total Profit:</strong> {{ calculateOverallProfit() }}</p>
+        <button mat-raised-button color="primary" (click)="onSave()">Save All</button>
       </div>
-    </div>
-  </form>
 
-  <!-- Clear Confirmation Dialog -->
-  <div *ngIf="showClearConfirmationDialog" class="confirmation-dialog">
-    <div class="card2">
-      <i class="material-icons">delete_forever</i>
-      <p class="cookieHeading">Are You Sure?</p>
-      <div class="buttonContainer">
-        <button class="btn primary" (click)="confirmClear(indexoftable)">Yes</button>
-        <button class="btn accent" (click)="cancelClear()">No</button>
-      </div>
-    </div>
-  </div>
-</section>
+    </mat-card-content>
+  </mat-card>
 
-<!-- Plain-HTML Table Section -->
-<div class="table-container">
-  <table class="sales-table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Client Name</th>
-        <th>Quantity</th>
-        <th>Cost</th>
-        <th>Discount</th>
-        <th>Your Delivery</th>
-        <th>Shipping Cost</th>
-        <th>Paid?</th>
-        <th>Total</th>
-        <th>Profit</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let row of onselect; let i = index">
-        <td>{{ i + 1 }}</td>
-        <td>{{ row.client }}</td>
-        <td>{{ row.num8 }}</td>
-        <td>{{ row.num1 | currency:'USD':'symbol':'1.2-2' }}</td>
-        <td>{{ row.num4 | currency:'USD':'symbol':'1.2-2' }}</td>
-        <td>{{ row.num2 | currency:'USD':'symbol':'1.2-2' }}</td>
-        <td>{{ row.num7 | currency:'USD':'symbol':'1.2-2' }}</td>
-        <td>{{ row.choice }}</td>
-        <td>{{ (row.num1 + row.num4 + row.num2 + row.num8) | currency:'USD':'symbol':'1.2-2' }}</td>
-        <td>{{ (row.num4 + row.num2 + row.num8 - row.num7) | currency:'USD':'symbol':'1.2-2' }}</td>
-        <td class="action-cell">
-          <button class="btn edit-btn" (click)="onEdit(i)">Edit</button>
-          <button class="btn delete-btn" (click)="confirmClear(i)">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="1" class="right-align">Overall Total:</td>
-        <td colspan="11">{{ calculateOverallTotal() | currency:'USD':'symbol':'1.2-2' }}</td>
-      </tr>
-      <tr>
-        <td colspan="1" class="right-align">Overall Profit:</td>
-        <td colspan="11">{{ calculateOverallProfit() | currency:'USD':'symbol':'1.2-2' }}</td>
-      
-      </tr>
-      <tr>
-        <td>
-          <button class="btn success" (click)="onSave()">💾 Save All</button>
-        </td>
-      </tr>
-    </tfoot>
-   
-
-  </table>
 </div>
+</section>

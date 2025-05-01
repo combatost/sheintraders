@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'sheintable', component: SheintableComponent, canActivate: [AuthGuard] },
   { path: 'aboutme', component: AboutmeComponent, canActivate: [AuthGuard] },
-  { path: 'analysic', component: AnalysicComponent,canActivate: [AuthGuard] },
+  { path: 'analysic', component: AnalysicComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/login' }
 ];
